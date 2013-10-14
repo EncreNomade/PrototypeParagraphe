@@ -1,0 +1,338 @@
+#keygame {
+    position: absolute;
+}
+
+#keygame img.back {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+#keygame #key_timer {
+    position: absolute;
+    top: -120px;
+    left: 0px;
+    width: 0px;
+    height: 14px;
+}
+#keygame #key_timer #timer_left {
+    position: absolute;
+    top: 0px;
+    right: -1px;
+    width: 400px;
+    height: 14px;
+    background: transparent url('../games/timer.png') no-repeat left top;
+    background-size: 400px 14px;
+    overflow: hidden;
+}
+#keygame #key_timer #timer_right {
+    position: absolute;
+    top: 0px;
+    left: -1px;
+    width: 400px;
+    height: 14px;
+    background: transparent url('../games/timer.png') no-repeat left top;
+    background-size: 400px 14px;
+    overflow: hidden;
+    -webkit-transform: scaleX(-1);
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+@keyframes shining
+{
+0% {
+}
+100% {
+    filter: brightness(0.2);
+    -webkit-filter: brightness(0.2);
+    -moz-filter: brightness(0.2);
+    -o-filter: brightness(0.2);
+    -ms-filter: brightness(0.2);
+}
+}
+
+@-webkit-keyframes shining /* Safari and Chrome */
+{
+0% {
+}
+100% {
+    filter: brightness(0.2);
+    -webkit-filter: brightness(0.2);
+    -moz-filter: brightness(0.2);
+    -o-filter: brightness(0.2);
+    -ms-filter: brightness(0.2);
+}
+}
+#keygame #key_timer.urgent #timer_left, #keygame #key_timer.urgent #timer_right {
+    animation: shining 0.4s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    -webkit-animation: shining 0.4s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+}
+
+
+
+#key_timer #keygame_score {
+    position: absolute;
+    top: 30px;
+    left: -400px;
+    width: 800px;
+    height: 40px;
+    padding: 0px;
+    margin: 0px;
+}
+#key_timer #keygame_score li {
+    position: relative;
+    float: left;
+    width: 36px;
+    height: 36px;
+    margin: 0px 10px 0px 0px;
+    border-radius: 20px;
+    border: 2px solid #000;
+    background: #fff;
+}
+#key_timer #keygame_score li.succeed {
+    background: #fff url('../games/key_succeed.png') no-repeat center center;
+    background-size: 30px 30px;
+}
+#key_timer #keygame_score li.lost {
+    background: #fff url('../games/key_lost.png') no-repeat center center;
+    background-size: 30px 30px;
+}
+
+
+
+#keygame .key {
+    position: absolute;
+    overflow: hidden;
+    width: 60px;
+    height: 60px;
+    z-index: 1;
+    background: transparent url('../games/key.png') no-repeat left top;
+    background-size: 60px 60px;
+}
+#keygame .key.hit {
+    background: transparent url('../games/key_hit.png') no-repeat left top;
+    background-size: 60px 60px;
+}
+#keygame .key.error {
+    background: transparent url('../games/key_error.png') no-repeat left top;
+    background-size: 60px 60px;
+}
+#keygame .key.miss {
+    background: transparent url('../games/key_miss.png') no-repeat left top;
+    background-size: 60px 60px;
+}
+
+#keygame .leftkey {
+    left: -110px;
+    top: 50px;
+}
+#keygame .topkey {
+    left: -30px;
+    top: -30px;
+}
+#keygame .bottomkey {
+    left: -30px;
+    top: 50px;
+}
+#keygame .rightkey {
+    left: 50px;
+    top: 50px;
+}
+
+
+.key .arrow {
+    position: absolute;
+    left: 9px;
+    top: 4px;
+    width: 26px;
+    height: 35px;
+}
+.key.hit .arrow, .key.miss .arrow, .key.error .arrow {
+    background-position: 0px 5px;
+}
+.leftkey .arrow {
+    background: transparent url('../games/arrow_left.png') no-repeat left top;
+    background-size: 26px 26px;
+}
+.bottomkey .arrow {
+    background: transparent url('../games/arrow_down.png') no-repeat left top;
+    background-size: 26px 26px;
+}
+.topkey .arrow {
+    background: transparent url('../games/arrow_up.png') no-repeat left top;
+    background-size: 26px 26px;
+}
+.rightkey .arrow {
+    background: transparent url('../games/arrow_right.png') no-repeat left top;
+    background-size: 26px 26px;
+}
+
+.key .result {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 60px;
+    height: 60px;
+    border: 0px;
+    background: transparent;
+}
+@keyframes showresult
+{
+0% {
+    left: 0px;
+    top: 0px;
+    width: 30px;
+    height: 30px;
+    background-size: 30px 30px;
+    opacity: 1;
+}
+100% {
+    left: -20px;
+    top: -20px;
+    width: 100px;
+    height: 100px;
+    background-size: 100px 100px;
+    opacity: 0;
+}
+}
+
+@-webkit-keyframes showresult /* Safari and Chrome */
+{
+0% {
+    left: 15px;
+    top: 15px;
+    width: 30px;
+    height: 30px;
+    background-size: 30px 30px;
+    opacity: 1;
+}
+100% {
+    left: -20px;
+    top: -20px;
+    width: 100px;
+    height: 100px;
+    background-size: 100px 100px;
+    opacity: 0;
+}
+}
+.key.hit .result {
+    background: transparent url('../games/key_succeed.png') no-repeat center center;
+    background-size: 30px 30px;
+    
+    animation: showresult 0.5s;
+    animation-timing-function: ease-in;
+    animation-iteration-count: 1;
+    -webkit-animation: showresult 0.5s;
+    -webkit-animation-timing-function: ease-in;
+    -webkit-animation-iteration-count: 1;
+}
+.key.error .result, .key.miss .result {
+    background: transparent url('../games/key_lost.png') no-repeat center center;
+    background-size: 30px 30px;
+    
+    animation: showresult 0.5s;
+    animation-timing-function: ease-in;
+    animation-iteration-count: 1;
+    -webkit-animation: showresult 0.5s;
+    -webkit-animation-timing-function: ease-in;
+    -webkit-animation-iteration-count: 1;
+}
+
+
+@keyframes key_border
+{
+0% {
+    margin-left: -32px;
+    margin-top: -32px;
+    width: 120px;
+    height: 120px;
+    opacity: 1;
+}
+55% {
+    margin-left: -2px;
+    margin-top: -2px;
+    width: 60px;
+    height: 60px;
+    opacity: 1;
+}
+70% {
+    margin-left: 3px;
+    margin-top: 3px;
+    width: 50px;
+    height: 50px;
+    opacity: 1;
+}
+100% {
+    margin-left: 23px;
+    margin-top: 23px;
+    width: 10px;
+    height: 10px;
+    opacity: 0;
+}
+}
+
+@-webkit-keyframes key_border /* Safari and Chrome */
+{
+0% {
+    margin-left: -32px;
+    margin-top: -32px;
+    width: 120px;
+    height: 120px;
+    opacity: 1;
+}
+55% {
+    margin-left: -2px;
+    margin-top: -2px;
+    width: 60px;
+    height: 60px;
+    opacity: 1;
+}
+70% {
+    margin-left: 3px;
+    margin-top: 3px;
+    width: 50px;
+    height: 50px;
+    opacity: 1;
+}
+100% {
+    margin-left: 23px;
+    margin-top: 23px;
+    width: 10px;
+    height: 10px;
+    opacity: 0;
+}
+}
+
+#keygame .key_border {
+    position: absolute;
+    margin-left: 23px;
+    margin-top: 23px;
+    width: 10px;
+    height: 10px;
+    border: 2px solid #faff3e;
+    overflow: visible;
+    z-index: 0;
+}
+#keygame .key_border.active {
+    -webkit-box-shadow: 0px 0px 35px 5px #ffc323;
+    -moz-box-shadow: 0px 0px 35px 5px #ffc323;
+    box-shadow: 0px 0px 35px 5px #ffc323;
+}
+
+#keygame .key_border.reduce {
+    z-index: 2;
+    animation: key_border 1.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    -webkit-animation: key_border 1.5s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: 1;
+}

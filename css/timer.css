@@ -1,0 +1,47 @@
+.pie {
+    width:30px; height:30px;
+    border-radius:15px;
+    position:absolute;
+    
+    background-color: #eee;
+}
+.pie1 { clip:rect(0px,30px,30px,15px); }
+.pie2 { clip:rect(0px,15px,30px,0px); }
+.hold {
+    width:30px; height:30px;
+    position:absolute;
+    z-index:1;
+}
+.hold1 { clip:rect(0px,30px,30px,15px); }
+.hold2 { clip:rect(0px,15px,30px,0px); }
+.bg { 
+    width:30px;
+    height:30px;
+    border-radius:15px;
+    position:absolute;
+    
+    background-image: linear-gradient(bottom, #fa9e33 30%, #ffcd92 65%);
+    background-image: -o-linear-gradient(bottom, #fa9e33 30%, #ffcd92 65%);
+    background-image: -moz-linear-gradient(bottom, #fa9e33 30%, #ffcd92 65%);
+    background-image: -webkit-linear-gradient(bottom, #fa9e33 30%, #ffcd92 65%);
+    background-image: -ms-linear-gradient(bottom, #fa9e33 30%, #ffcd92 65%);
+
+    background-image: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0.3, #fa9e33),
+        color-stop(0.65, #ffcd92)
+    );
+}
+
+#timer {
+    margin:0px;
+    width: 30px;
+    height: 30px;
+    
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+    transition: all 0.3s linear;
+}

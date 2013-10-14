@@ -1,0 +1,46 @@
+@font-face {
+    font-family: 'DejaVu Sans';
+    src: url('DejaVuSans-webfont.eot');
+    src: url('DejaVuSans-webfont.eot?#iefix') format('embedded-opentype'),
+         url('DejaVuSans-webfont.woff') format('woff'),
+         url('DejaVuSans-webfont.ttf') format('truetype'),
+         url('DejaVuSans-webfont.svg#dejavu_sansbook') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'DejaVu Sans';
+    src: url('DejaVuSans-Oblique-webfont.eot');
+    src: url('DejaVuSans-Oblique-webfont.eot?#iefix') format('embedded-opentype'),
+         url('DejaVuSans-Oblique-webfont.woff') format('woff'),
+         url('DejaVuSans-Oblique-webfont.ttf') format('truetype'),
+         url('DejaVuSans-Oblique-webfont.svg#dejavu_sansoblique') format('svg');
+    font-weight: normal;
+    font-style: oblique;
+}
+
+
+@font-face {
+    font-family: 'DejaVu Sans';
+    src: url('DejaVuSans-Bold-webfont.eot');
+    src: url('DejaVuSans-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('DejaVuSans-Bold-webfont.woff') format('woff'),
+         url('DejaVuSans-Bold-webfont.ttf') format('truetype'),
+         url('DejaVuSans-Bold-webfont.svg#dejavu_sansbold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'DejaVu Sans';
+    src: url('DejaVuSans-BoldOblique-webfont.eot');
+    src: url('DejaVuSans-BoldOblique-webfont.eot?#iefix') format('embedded-opentype'),
+         url('DejaVuSans-BoldOblique-webfont.woff') format('woff'),
+         url('DejaVuSans-BoldOblique-webfont.ttf') format('truetype'),
+         url('DejaVuSans-BoldOblique-webfont.svg#dejavu_sansbold_oblique') format('svg');
+    font-weight: bold;
+    font-style: oblique;
+}

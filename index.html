@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="robots" content="noindex"/>
+        <meta name="viewport" content="minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0, width=device-width, user-scalable=no"/>
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+        
+        <title>Prototype</title>
+        
+        <link href="./font/DejaVuSans/DejaVuSans.css" rel="stylesheet" type="text/css"/>
+        <link href="./css/template.css" rel="stylesheet" type="text/css"/>
+        <link href="./css/bag.css" rel="stylesheet" type="text/css"/>
+        <link href="./css/keygame.css" rel="stylesheet" type="text/css"/>
+        <link href="./css/timer.css" rel="stylesheet" type="text/css"/>
+        
+        <script src="./js/jquery-1.9.1.min.js" type="text/javascript"></script>
+        <script src="./js/BrowserDetect.js" type="text/javascript"></script>
+        
+        <script type="text/javascript" src="./PxLoader/PxLoader.js"></script>
+        <!-- images --> 
+        <script type="text/javascript" src="./PxLoader/PxLoaderImage.js"></script> 
+        <!-- sounds -->
+        <script type="text/javascript" src="./PxLoader/soundmanager2.js"></script>
+        <script type="text/javascript" src="./PxLoader/PxLoaderSound.js"></script>
+        
+        <script src="./js/underscore-min.js" type="text/javascript"></script>
+        <script src="./js/backbone-min.js" type="text/javascript"></script>
+        
+        <script src="./js/Tools.js" type="text/javascript"></script>
+        <script src="./js/animation.js" type="text/javascript"></script>
+        <script src="./js/scenario.js" type="text/javascript"></script>
+        <script src="./js/scene.js" type="text/javascript"></script>
+        
+        <script src="./js/notebook.js" type="text/javascript"></script>
+        <script src="./js/badge.js" type="text/javascript"></script>
+        <script src="./js/ui.js" type="text/javascript"></script>
+        
+        <script src="./js/config.js" type="text/javascript"></script>
+        <script src="./js/Interaction.js" type="text/javascript"></script>
+        <script src="./js/msg_center.js" type="text/javascript"></script>
+        <script src="./js/gallery.js" type="text/javascript"></script>
+        <script src="./js/gameinfo.js" type="text/javascript"></script>
+        <script src="./js/events.js" type="text/javascript"></script>
+        <script src="./js/mse.js" type="text/javascript"></script>
+        <script src="./js/mdj.js" type="text/javascript"></script>
+        <script src="./js/wikianime.js" type="text/javascript"></script>
+        
+        <script src="./games/keygame.js" type="text/javascript"></script>
+        <script src="./games/RatGame.js" type="text/javascript"></script>
+        <script src="./games/FindSimon.js" type="text/javascript"></script>
+        
+    </head>
+    
+    <body>
+        
+        <article class="page show" id="couv" data-duration="5">
+            <!-- background -->
+            <div class="layer">
+                <img class="background shadow" style="cursor: pointer;" src="./img/couv.jpeg"/>
+            </div>
+            <!-- preloader -->
+            <div id="preloader" class="">
+                <progress id="progressbar" value="0" max="100"></progress>
+                <p>Téléchargement des ressources...</p>
+            </div>
+        </article>
+        
+        <article class="page hidden" id="titre" data-duration="1.5">
+            <!-- background -->
+            <div class="layer">
+                <img class="background shadow" src="./img/Rue.jpg"/>
+            </div>
+            <div class="layer">
+                <div class="absolut" style="left:50%;top:0px;width:40%;height:100%;margin-left:-20%;background:rgba(0, 0, 0, 0.5);"></div>
+                <h2 class="absolut" style="left:50%;top:30%;width:400px;margin-left:-200px;color:#fff;text-align:center;font: normal 30px/80px 'DejaVu Sans', 'Helvetica LT Std', Arial;">
+                    Episode I<br/>
+                    <img src="./img/title.png" style="width: 100%; height: auto;"/>
+                </h2>
+            </div>
+        </article>
+        
+        <article class="page hidden" id="contentPage">
+            
+            <!-- background -->
+            <div class="layer">
+                <img id="contentBack" class="background shadow" src="./img/Rue.jpg"/>
+            </div>
+            
+            <!-- Grillage -->
+            <div class="layer">
+                <img id="grillage" class="animate background" style="width: 2800px; height: 1600px; margin-left: -1400px; margin-top: -800px; opacity: 0;" class="background" src="./img/grillage.png"/>
+            </div>
+            
+            <!-- Text -->
+            <div class="layer">
+                <article class="content absolut" id="content">
+                    <section class="block hidden">
+                        <p class="hidden text" id="heart1">Ils étaient là.<br/>
+                        À moins de cent mètres derrière Simon. Bien décidés à lui faire payer l’affront qu’ils avaient subi.</p>
+                        <p class="hidden text" id="heart2">La Meute.<br/>
+                        Quatre adolescents qui faisaient régner leur loi au sein du foyer.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text" id="heart3">Recroquevillé dans la pénombre d’un porche, Simon contemplait le ballet des lampes torches qui déchiraient la nuit. Des yeux, scrutant le moindre recoin, repoussant les ténèbres de leurs lueurs <span class="wiki" data-wikiname="Cyclope">cyclopes</span>.</p>
+                        <p class="hidden text" id="heart4">Bientôt, ils seraient sur lui.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text" data-sound="villenuit">Simon frissonna en songeant à ce qui allait lui arriver. Il savait que Kevin, leur chef, serait sans pitié…</p>
+                        <p class="hidden text">Il fallait qu’il leur échappe.<br/>
+                        Absolument. Et tant pis s’il ne pouvait jamais retourner au foyer.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text" data-sound="pasAppro">Les pas se rapprochaient, de plus en plus. Il pouvait entendre leurs voix à présent.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden parole" data-sound="kevinSpeak"><img src="./img/kevin.png" class="portrait"/>Trouvez-moi ce sale petit rat ! Il va comprendre qu’on ne peut pas se moquer de nous comme ça !</p>
+                        <p class="hidden parole"><img src="./img/fouine.png" class="portrait"/>Ouaip, on va lui faire sa fête !</p>
+                        <p class="animation hidden" data-sound="woosh" data-animation="fouine"></p>
+                        <p class="hidden text">Ça, c’était « La Fouine ».<br/>
+                        Dix sept ans, un mètre quatre-vingt, soixante-quinze kilos de violence pure. Une véritable bombe ambulante qui ne demandait qu’à exploser.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text">Simon se pencha un instant hors de son abri pour évaluer ses chances de leur échapper.</p>
+                        <p class="hidden text">Proches du zéro absolu s’il ne bougeait pas de sa cachette. Un peu plus s’il tentait une sortie. À condition de tomber sur quelqu’un, un adulte qui saurait éloigner ses poursuivants.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden parole"><img src="./img/simon.png" class="portrait"/>Tu es prêt ? chuchota-t-il à Dark.</p>
+                        <p class="hidden text">Dark. Vador. Son rat <span class="wiki" data-wikiname="Albinos">albinos</span>. Son plus fidèle compagnon depuis un an.<br/>
+                        Le seul en vérité.</p>
+                        <p class="hidden text">Simon repoussa l’élan de mélancolie qui menaçait de le submerger et enfouit Dark au fond de son sac.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden game" data-gamename="RatGame" data-gametype="interaction">
+                        </p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text">Il passa les lanières autour de ses épaules et s’élança.<br/>
+                        Pas de réaction.</p>
+                        <p class="animation hidden" data-animation="simcour2"></p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text" data-sound="runsound">Il s’était mis à courir comme si sa vie en dépendait.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p id="ph_simonRun" class="hidden illu" data-duration="3"><img class="shadow_white" src="./img/simonRun.jpg"/></p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text">Si la Meute lui tombait dessus, il était bon pour un passage à tabac dans les règles de l’art. Voilà ce qui se passe lorsque l’on refuse de se soumettre aux plus forts.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text">Simon évitait de regarder dans leur direction, les yeux rivés sur les <span class="wiki" data-wikiname="Frondaison">frondaisons</span> du parc Montsouris.</p>
+                    </section>
+                            
+                    <section class="block hidden">
+                        <p class="hidden text">Des arbres, de la pénombre et des milliards de recoins où il pourrait se dissimuler en attendant l’aube.<br/>
+                        S’il atteignait le jardin, il serait sauvé.</p>
+                    </section>
+                
+                    <section class="block hidden">
+                        <p class="hidden text">Mais, dans sa précipitation, il buta contre le trottoir. Le béton lui arracha une plainte. Un cri minuscule.</p>
+                        <p class="hidden text">Il se figea.</p>
+                        <p class="hidden text">La Meute l’avait sans doute entendu. Ils allaient le localiser, lui tomber dessus.<br/>
+                        L’adolescent retint son souffle.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text">Pour l’instant, les poursuivants s’étaient éloignés, occupés à fouiller une impasse encombrée de poubelles.</p>
+                        <p class="hidden text">Simon se redressa lentement sur les coudes. Plus qu’une dizaine de mètres et il serait à l’abri.<br/>
+                        Il s’accroupit, prêt à s’élancer de nouveau. D’une main rassurante, il caressa le poil hérissé de Dark.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden parole"><img src="./img/simon.png" class="portrait"/>T’inquiètes, on est presque en sécu…</p>
+                        <p class="hidden text">Un bras puissant s’enroula soudain autour de sa poitrine, bloquant ses paroles au fond de sa gorge. Un bras noir de crasse, surgi de l’amas de carton comme un monstrueux tentacule.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden parole"><img src="./img/unknown.png" class="portrait"/>Tu fais trop de bruit, petit, gronda le tas d’emballages ramollis par la pluie.</p>
+                        <p class="hidden text">Simon, terrifié, respirait à peine.</p>
+                        <p class="hidden parole"><img src="./img/unknown.png" class="portrait"/>Si tu veux leur échapper, il va falloir me faire confiance, reprit la voix.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden parole dark"><img src="./img/dark.png" class="portrait"/>￼Joue pour te calmer et écouter cet inquiétant personnage</p>
+                        <p class="hidden parole dark">
+                            <img src="./img/dark.png" class="portrait"/>￼Appuie sur la flèche <img src="./games/key_up.jpg" style="position: relative; top: 10px; width: auto; height: 50px;"/> ou <img src="./games/key_down.jpg" style="position: relative; top: 10px; width: auto; height: 50px;"/> de ton clavier lorsque le contour jaune touche le pavé dans le jeu.<br/>
+                            <img src="./games/keywithborder.jpg" style="height: 50px;"/><img src="./games/keygoodtiming.jpg" style="height: 50px; margin-left: 50px;"/><br/>
+                        </p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden parole dark">
+                            <img src="./img/dark.png" class="portrait"/>￼Réussi<img src="./games/keysuccess.jpg" style="position: relative; top: 10px; width: auto; height: 50px; margin: 0px 20px 0px 10px;"/><br/>
+                            Raté<img src="./games/keyfail.jpg" style="position: relative; top: 10px; width: auto; height: 50px; margin: 0px 10px;"/>
+                        </p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden parole dark"><img src="./img/dark.png" class="portrait"/>￼￼Si tu réussis, Simon discutera avec le SDF. Si tu rates cinq fois, Simon continuera à courir.</p>
+                        <div class="hidden game keygame shadow" data-winexit="1" data-loseexit="2" data-gamename="calmdown">
+                            <img src="./img/dark.png" class="portrait"/>
+                            Tu es prêt? Vas y !<br/>
+                            <img class="btn_play" src="./img/btn_play.png"/>
+                        </div>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden parole dark" id="1"><img src="./img/dark.png" class="portrait"/>Bravo! Tu as réussi à te calmer, tu vas écouter et gagner de précieuses minutes sur tes poursuivants.</p>
+                        <p class="hidden text">« Respirer. Lentement. Inspirer par le nez. » s’exhortait Simon pour retrouver son calme.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden parole"><img src="./img/unknown.png" class="portrait"/>C’est bien petit, continue comme ça et je vais pouvoir te lâcher.</p>
+                        <p class="hidden text">La voix avait quelque chose de rassurant, d’hypnotique. Les accents d’un conteur au coin d’un feu de bois. Et malgré sa frayeur, Simon s’apaisait peu à peu.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text">Bientôt l’étreinte se relâcha et l’adolescent put se retourner.</p>
+                        <p class="hidden text">Deux yeux, minuscules, enfoncés dans un visage bonhomme mangé par une barbe jaunie de nicotine le fixaient avec bienveillance.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden parole"><img src="./img/diogene.png" class="portrait"/>Alors petit, on dirait que tu es dans le pétrin ?</p>
+                        <p class="hidden parole"><img src="./img/simon.png" class="portrait"/>Je… Oui, monsieur.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden parole"><img src="./img/diogene.png" class="portrait"/>Monsieur ? ricana l’homme. Il y a bien longtemps que l’on ne m’a pas donné du monsieur ! Appelle moi Diogène, comme tout le monde.</p>
+                        <p class="hidden parole"><img src="./img/simon.png" class="portrait"/>Diogène ? s’étonna Simon tout en songeant qu’effectivement le vieillard ressemblait au célèbre philosophe.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden parole"><img src="./img/diogene.png" class="portrait"/>On ne choisit pas sa place au soleil ! répondit l’homme avec emphase. Mais trêve de civilités, il me semble que les autres ne vont pas tarder à venir par ici et j’ai bien l’impression qu’ils vont te faire passer un sale quart d’heure, non ?</p>
+                        <p class="hidden text">Simon baissa les yeux.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden parole"><img src="./img/diogene.png" class="portrait"/>Alors écoute-moi : je vais tâcher de les retenir un peu pendant que tu vas te cacher dans le parc. </p>
+                        <p class="hidden parole"><img src="./img/simon.png" class="portrait"/>Mais… Pourquoi ?</p>
+                        <p class="hidden parole"><img src="./img/diogene.png" class="portrait"/>Ne cherche pas… Disons que je veille à rétablir l’équilibre : ils ont l’avantage du nombre, tu auras celui du temps…</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden parole"><img src="./img/simon.png" class="portrait"/>Mer…</p>
+                        <p class="hidden parole"><img src="./img/diogene.png" class="portrait"/>Pas de ça entre nous ! tonna Diogène en lui tendant une grosse main dévorée de poils noirs. Un jour tu auras l’occasion de me rendre la pareille, j’en suis sûr.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text">Simon haussa les épaules sans comprendre puis il se glissa en silence vers les frondaisons.<br/>
+                        Il avait presqu’atteint les premiers bosquets lorsqu’il entendit la voix du vieil homme haranguer la Meute.</p>
+                        <p class="hidden text">« J’espère qu’ils ne lui feront pas de mal… »</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text">Progressant avec prudence, Simon s’enfonça dans les entrailles de Montsouris.<br/>
+                        Le silence était retombé.</p>
+                        <p class="hidden text">« Avec un peu de chance, ils ont abandonné. » Pensa-t-il sans vraiment y croire.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text">Il progressait en direction du lac, se coulant dans les ombres du parc. Scrutant l’obscurité, il cherchait un endroit pour se cacher, attendre l’aube en toute sécurité.</p>
+                        <p class="hidden text" style="font-size: 50px; line-height: 60px; text-align: center;">Soudain…</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden parole dark" data-goto="3"><img src="./img/dark.png" class="portrait"/>Grâce à toi Simon dispose de quelques précieuses secondes d’avance sur ses poursuivants.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden parole dark" id="2"><img src="./img/dark.png" class="portrait"/>Dommage, tu n'as pas réussi à te calmer, tu vas t'échapper et continuer à courir.</p>
+                        <p class="hidden text">« Faire confiance ? » songea Simon.</p>
+                        <p class="hidden text">Comment faire confiance à un inconnu surgi d’un amas de cartons au beau milieu de la nuit ?</p>
+                        <p class="hidden text">En revanche, s’il restait là, il risquait de se faire capturer.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text">Malgré la peur qui paralysait ses muscles, Simon n’avait qu’une idée en tête : s’échapper.<br/>
+                        Il s’efforça de se calmer.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden parole"><img src="./img/simon.png" class="portrait"/>Que me voulez-vous ? parvint-il à articuler.</p>
+                        <p class="hidden parole"><img src="./img/diogene.png" class="portrait"/>T’inquiètes petit, Diogène est là pour t’aider !</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text">Mais l’haleine avinée de l’homme, ses accents rocailleux ne faisaient que renforcer la détermination de Simon. Et, tandis que l’étreinte se relâchait un peu, l’adolescent ramena ses genoux sous ses fesses.</p>
+                        <p class="hidden parole"><img src="./img/diogene.png" class="portrait"/>Arrête de remuer, tonna l’homme, tu vas nous faire repérer.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden parole"><img src="./img/simon.png" class="portrait"/>Dark, à toi !</p>
+                        <p class="hidden text">Avant que son adversaire ne comprenne ce qui se passe, le rat lui avait mordu la main.</p>
+                        <p class="hidden text">L’homme poussa un cri et Simon bondit.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden parole"><img src="./img/diogene.png" class="portrait"/>Nom d’un rat d’égout ! rugit la voix derrière lui.</p>
+                        <p class="hidden text">Mais Simon ne se retourna pas, courant vers le parc.</p>
+                        <p class="hidden text">A peine était-il sorti de la pénombre que le halo d’une torche le surprit.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p id="3" class="hidden parole" data-sound="ilestla"><img src="./img/unknown.png" class="portrait"/>Il est là !</p>
+                        <p class="hidden text">La Meute était de nouveau sur ses talons…</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text">Simon détala tandis que les faisceaux accrochaient sa silhouette.</p>
+                        <p class="hidden parole"><img src="./img/kevin.png" class="portrait"/>Chopez-le ! Faut qu’il comprenne !</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text">Que je comprenne quoi ? Qu’il faut se laisser faire ? Pas question !</p>
+                    </section>
+                
+                    <section class="block hidden">
+                        <p class="hidden text" data-sound="runsound">Il accéléra.</p>
+                        <p class="hidden text">Il essayait d’oublier que ses poumons le brûlaient, qu’il était épuisé par cette poursuite qui durait depuis des heures, et surtout que la peur menaçait de le paralyser à tout instant.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text" data-sound="klaxon">Il traversa le boulevard, déclenchant le klaxon furieux d’un <span class="wiki" data-wikiname="Noctambule">noctambule</span> égaré.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p id="background2" class="hidden text" data-event="changeBackground" data-target="contentBack" data-img="./img/Pavillon.jpg">Puis il s’engouffra à l’abri des arbres. Son sac ballotait sur ses épaules et il pensa au pauvre Dark.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text">Sans réfléchir, il pénétra dans une petite allée. Il dépassa les angles du pavillon météo qui s’élevait dans la pénombre, puis il ralentit sa course.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text" data-sound="vent">Pas un bruit.<br/>
+                        Rien d’autre que le vent dans les feuilles.<br/>
+                        Où étaient-ils passés ?</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text">Simon s’arrêta, s’accroupit derrière un banc scarifié de graffitis.</p>
+                        <p class="hidden text">Là ! Sur sa gauche.</p>
+                    </section>
+                    
+                    <section class="block hidden" style="left: 12%;">
+                        <p id="ph_simonCache" class="hidden illu" style="height:472px; width:700px;" data-duration="3"><img class="shadow_white" src="./img/SimonCache.jpg"/></p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text" data-sound="paslourd">Il avait reconnu la démarche chaloupée de la Fouine, les pas lourds de l’Ours – seize ans, un QI inversement proportionnel à sa force - à ses côtés.</p>
+                        <p class="hidden text">Les deux autres suivaient la ligne de tramway qui longeait le parc, sur sa droite.<br/>
+                        Le groupe s’était séparé en deux et tentait de l’encercler.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text">Simon réfléchit à toute allure.</p>
+                        <p class="hidden text" data-sound="rer">Le RER !</p>
+                        <p class="hidden text">La station ne devait être qu’à quelques dizaines de mètres devant lui et, même en ces heures tardives, il y aurait sans doute un peu de monde.</p>
+                        <p class="hidden text">Il reprit sa progression, lentement, veillant à rester invisible.<br/>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text">Plus que cinquante mètres.</p>
+                        <p class="hidden text">Il entendait déjà le crissement des rames sur les rails.</p>
+                        <p class="hidden text" id="quarante" style="text-align: center;">Quarante</p>
+                        <p class="hidden parole"><img src="./img/unknown.png" class="portrait"/>Là sur le pont ! Il essaye de rejoindre la gare !</p>
+                        <p class="hidden parole"><img src="./img/simon.png" class="portrait"/>Merde ! lâcha Simon en reprenant sa course.</p>
+                        <p class="hidden text" id="trente" style="text-align: center;" data-sound="restartrun">Trente.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text">Mais la Meute, galvanisée par la proximité de sa proie, se rapprochait rapidement.<br/>
+                        Ils avaient de la lumière, ils évitaient les obstacles. Surtout ils étaient plus âgés, plus forts.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text">Simon était éreinté, les jambes écorchées par les ronces, au bord de l’asphyxie.<br/>
+                        Les deux groupes gagnaient insensiblement du terrain. Bientôt ils se rejoindraient et ce serait <span class="wiki" data-wikiname="Hallali">l’hallali</span>.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text">Simon obliqua brutalement vers le nord pour essayer de rejoindre un bouquet d’arbres denses. Avec un peu de chance, il pourrait les semer. Au pire, il grimperait sur l’un des troncs centenaires.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text">Il se précipita dans le bosquet. Les branches basses fouettèrent son visage, lui arrachant des larmes.<br/>
+                        Mais il était en sécurité : l’obscurité était totale.</p>
+                        <p class="hidden text">Il hésita : qu’allait-il faire à présent ?</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden game" data-gamename="ForestExit" data-winexit="5" data-loseexit="4" data-gametype="interaction">
+                        </p>
+                    </section>
+                    
+                    <!--
+                    <section class="block hidden">
+                        <p class="hidden parole dark"><img src="./img/dark.png" class="portrait"/>Aide Simon à se décider</p>
+                        <ul class="hidden choice" id="choice2">
+                            <li data-goto="4" class="animate">Va-t-il continuer à s’enfoncer dans l’obscurité pour tenter d’échapper à ses poursuivants ?</li>
+                            <li data-goto="5" class="animate">Ou, au contraire, va-t-il essayer de se cacher dans l’un des arbres du parc ?</li>
+                        </ul>
+                    </section>
+                    -->
+                    
+                    <section class="block hidden">
+                        <p class="hidden text" id="4">Simon balaya les ténèbres en plissant les paupières. Mais les ombres s’étaient refermées, formant un mur d’une noirceur impénétrable.</p>
+                        <p class="hidden text">« Tant pis » murmura-t-il en reprenant sa course.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text">Les bras protégeant son visage, il accélérait toujours plus, tentant de semer les éclats de voix de ses poursuivants. Il les entendait se rapprocher. Autour de lui, noyés dans l’obscurité.</p>
+                        <p class="hidden parole"><img src="./img/simon.png" class="portrait"/>Ils ne m’auront pas… Ils ne m’auront…</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text">Soudain, il s’effondra, le souffle coupé, une violente douleur barrant sa poitrine. Il venait de heurter quelque chose de plein fouet.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text">Abasourdi, Simon fouilla l’obscurité. Il entendait ses poursuivants battre les talus et les fourrés.</p>
+                        <p class="hidden text">Il tâtonna un instant dans son sac.<br/>
+                        Sa torche.<br/>
+                        Un faible halo de lumière.</p>
+                        <p class="hidden text">Un grillage.</p>
+                    </section>
+                    
+                    <section class="block hidden" style="left: 50%; top: 50%; width: 400px; font-size: 80px; margin-left: -200px; margin-top: -45px;">
+                        <p class="callback hidden" data-duration="0" data-target="showGrillage"></p>
+                        <p class="hidden text" style="text-align: center; line-height: 90px;">Piégé !!!</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text" data-goto="6">Il se redressa en grimaçant. S’approcha. Une dizaine de mètres en contrebas, le faisceau de sa lampe illumina les reliefs mangés de rouille d’une ligne de chemin de fer abandonnée.<br/>
+                        <span class="wiki" data-wikiname="La Petite Ceinture">La Petite Ceinture.</span></p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text" id="5">Simon arrêta son choix sur un vieux chêne. Il n’en pouvait plus de fuir. Depuis qu’il s’était échappé du foyer, il n’avait cessé de courir et ses muscles lui faisaient de plus en plus mal.<br/>
+                        Il prit son élan et se hissa dans le feuillage touffu.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text">Les paumes écorchées, le souffle court, il s’adossa enfin contre le tronc rugueux en poussant un soupir…</p>
+                        <p class="hidden text">Juste à temps.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text">Deux mètres plus bas, en dessous de lui, la silhouette de la Fouine venait de faire son apparition précédée de l’œil scrutateur de sa lampe.</p>
+                        <p class="hidden text">Seul.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text">Il se figea au pied du chêne, étudiant avec attention le sol.</p>
+                        <p class="hidden parole"><img src="./img/fouine.png" class="portrait"/>Je sais que tu es là… Quelque part, terré comme une fillette…</p>
+                        <p class="hidden text">Simon se recroquevilla un peu plus.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden parole"><img src="./img/fouine.png" class="portrait"/>Allez, viens. Je ne te ferai pas de mal… Pas tout de suite… poursuivit la brute tout en élevant brusquement le faisceau de sa torche.</p>
+                        <p class="hidden text">Simon sursauta, aveuglé par la lumière crue.</p>
+                        <p class="hidden parole"><img src="./img/fouine.png" class="portrait"/>Je t’ai trouvé ! fanfaronna la Fouine.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text">Simon était pétrifié de terreur. Dans quelques secondes, le reste de la Meute serait là et tout serait fini. Kevin ne lui pardonnerait pas de lui avoir résisté.</p>
+                        <p class="hidden text">Il fallait tenter quelque chose. Quelque chose de si inattendu, de si surprenant que la Fouine ne pourrait rien tenter pour le retenir.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden parole"><img src="./img/fouine.png" class="portrait"/>Descends tout de suite ! hurla la brute.</p>
+                        <p class="hidden text">Et soudain, Simon sut ce qu’il allait faire.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden parole"><img src="./img/simon.png" class="portrait"/>J’arrive… Mais, j’ai… Un peu peur…</p>
+                        <p class="hidden text">La Fouine ricana.</p>
+                        <p class="hidden parole"><img src="./img/fouine.png" class="portrait"/>C’est bon, j’ai compris. Inutile de couiner, je viens t’aider.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text">Simon regarda l’adolescent s’avancer.</p>
+                        <p class="hidden text">Plus que quelques centimètres, pensa-t-il. Maintenant !</p>
+                        <p class="hidden text">Et il s’élança, atterrissant sur le dos de son poursuivant.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text">La Fouine émit un petit cri puis s’effondra, sonné, tandis que Simon reprenait sa fuite.</p>
+                        <p class="hidden text">Il entendit les autres qui hurlaient dans la nuit et accéléra encore.</p>
+                        <p class="hidden text">Dans sa précipitation, il faillit ne pas voir le grillage qui lui barrait la route.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text">Il stoppa sa course et tâtonna un instant dans son sac.</p>
+                        <p class="hidden text">Sa torche.<br/>
+                        Il actionna l’interrupteur.</p>
+                        <p class="hidden text">Une dizaine de mètres en contrebas, le faisceau de sa lampe illumina les reliefs mangés de rouille d’une ligne de chemin de fer abandonnée.<br/>
+                        <span class="wiki" data-wikiname="La Petite Ceinture">La Petite Ceinture.</span></p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text" id="6">Un éclat de voix derrière lui le fit sursauter.</p>
+                        <p class="hidden parole" data-sound="onletien"><img src="./img/unknown.png" class="portrait"/>On le tient !</p>
+                        <p class="hidden text">Simon fixa le puits de ténèbres qui s’étendait au-delà du grillage.</p>
+                        <p class="hidden parole"><img src="./img/kevin.png" class="portrait"/>Alors, t’es enfin prêt à recevoir ta leçon ?</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text">Kevin s’approcha dans la clarté de la lune.</p>
+                        <p class="hidden text">Il tendit le bras. Un bruit de ressort. Une lame apparut au bout de sa main.</p>
+                        <p class="animation hidden" data-animation="couteau"></p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text" data-sound="heartbeat">Simon sentait le sang battre contre ses tempes, l’adrénaline inonder son corps. Il voulait gagner du temps pour récupérer. Pour tenter quelque chose.<br/>
+                        Il se retourna face à ses adversaires.</p>
+                        <p class="hidden parole"><img src="./img/simon.png" class="portrait"/>Je n’ai fait que défendre Rachel. Vous n’aviez pas le droit de vous en prendre à elle.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden parole"><img src="./img/kevin.png" class="portrait"/>T’avais qu’à pas te mêler de nos affaires.</p>
+                        <p class="hidden parole"><img src="./img/simon.png" class="portrait"/>Quatre contre un, vous n’êtes que des lâches !</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text">Simon avait lancé ça tout en jetant un bref coup d’œil autour de lui. Il avait aperçu la grosse pierre au pied du grillage. Un bon tremplin…</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text">Kevin fulminait.</p>
+                        <p class="hidden parole"><img src="./img/kevin.png" class="portrait"/>Amenez-le moi !.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text">Les trois autres s’élancèrent. Mais, juste avant que leurs mains ne se referment sur lui, il s’était jeté sur le côté. D’une roulade il avait atteint la pierre. Il se redressa d’un bond, prit appui sur le rocher et entreprit l’escalade du grillage.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden parole"><img src="./img/kevin.png" class="portrait"/>Il va s’échapper ! Faites quelque chose !</p>
+                        <p class="hidden parole"><img src="./img/unknown.png" class="portrait"/>Mais… Il ne peut pas aller loin, il n’y a rien après.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <div class="hidden game shadow" data-winexit="7" data-loseexit="8" data-gamename="FindSimon">
+                            <img src="./img/dark.png" class="portrait"/>
+                            Aide Simon à échapper à la Meute. Utilise les flèches du clavier.<br/>
+                            <img class="btn_play" src="./img/btn_play.png"/>
+                        </div>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text" id="7" data-goto="9">C’était vrai.<br/>
+                        Il n’y avait plus rien. Rien d’autre qu’un énorme trou de ténèbres.<br/>
+                        Mais il était trop tard pour reculer.<br/>
+                        Simon s’élança dans le vide.</p>
+                    </section>
+                    
+                    <section class="block hidden">
+                        <p class="hidden text" id="8">A bout de souffle, Simon vit la Meute se précipiter sur lui. La fouine le contemplait de son regard chafouin tandis que les autres convergeaient dans sa direction. Dans quelques secondes, c'était sûr, Simon devrait se préparer à affronter Kevin.</p>
+                    </section>
+                    
+                    <section class="block hidden" style="left: 50%; top: 50%; width: 400px; font-size: 40px; margin-left: -200px; margin-top: -25px;">
+                        <p class="hidden text" id="9" data-sound="intro" style="line-height: 50px; text-align: center;">A SUIVRE...</p>
+                    </section>
+                    
+                </article>
+            </div>
+            
+            <!-- Top layer for animation/game/video etc -->
+            <div class="layer" id="avgLayer">
+                
+                <!-- Animations -->
+                <div id="root" class="hidden">
+                    <canvas class="bookroot">Votre navigateur ne supporte pas HTML5</canvas>
+                    <div class="video animate_medium"></div>
+                </div>
+                
+                <!-- Games -->
+                <div id="game_container" class="hidden">
+                    <div class="close"></div>
+                    <h1></h1>
+                    <div class="sep_line"></div>
+                    
+                    <canvas id="gameCanvas" class='game' width=50 height=50></canvas>
+                    
+                    <div id="game_center">
+                        <div class="game_result">
+                            <h2>Bravo ! <span>240</span> points !</h2>
+                            <h5>Améliore ton score !<br/>
+                                <button class="game_restart">REJOUER</button>
+                                <button class="game_quit">QUITTER</button>
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </article>
+        
+        <div id="controller" class="hidden">
+            <div id="ctrl_progressbar">
+                <div id="progressbar_back"></div>
+                <div id="progress"></div>
+                <div id="progress_pt">
+                    <div id="btn_playpause" class="absolut pause"></div>
+                    <div id="timer" class="absolut">
+                        <div class="hold hold1">
+                            <div class="pie pie1"></div>
+                        </div>
+                        <div class="hold hold2">
+                            <div class="pie pie2"></div>
+                        </div>
+                        <div class="bg"></div>
+                    </div>
+                </div>
+                
+                <div id="ctrl_prev"></div>
+                <div id="ctrl_next"></div>
+            </div>
+        </div>
+        
+        <div id="ui" class="center">
+        
+            <article id="ui_map" class="hidden">
+                <img src="./img/ui/map.png" class="image_fit"/>
+                <div class="close topright"></div>
+                
+                <div class="map_mark" style="left: 300px; top: 340px;">
+                    <img id="map_cross" src="./img/ui/map_mark.png"/>
+                    <img id="map_player" src="./img/ui/map_player.png"/>
+                    <div id="map_bulle">
+                        <img src="./img/ui/map_bulle.png"/>
+                        <h5>
+                            - Résumé de l'épisode -<br/>
+                            - PDF -
+                        </h5>
+                    </div>
+                </div>
+            </article>
+            
+            
+            <article id="ui_photos" class="hidden">
+                <img src="./img/ui/photo_book.jpg" class="shadow image_fit"/>
+                
+                <section id="ph_ep1" class="layer"></section>
+                
+                <section id="photo_shower" class="shadow hidden">
+                </section>
+                <div class="close topright"></div>
+            </article>
+            
+            
+            <article id="ui_badge" class="hidden">
+                <img src="./img/ui/bdg_back.png" class="image_fit"/>
+                <div class="close topright"></div>
+                
+                <header class="topcenter">
+                    <h1>Les Badges</h1>
+                    <img src="./img/ui/bdg_season13.png"/>
+                </header>
+                
+                <nav id="bdg_menu">
+                    <ul>
+                    </ul>
+                </nav>
+                
+                <div id="bdg_list">
+                </div>
+            </article>
+            
+            
+            <article id="ui_notebook" class="hidden">
+                <img src="./img/ui/notebook.png" class="image_fit"/>
+                <div id="nb_close" class="close topright"></div>
+                
+                <nav>
+                    <ul>
+                        <li id="nb_intro_tab" class="animate"><img src="./img/ui/nb_intro.png"/></li>
+                        <li id="nb_roles_tab" class="animate"><img src="./img/ui/nb_roles.png"/></li>
+                        <li id="nb_dictionary_tab" class="animate"><img src="./img/ui/nb_dictionary.png"/></li>
+                        <li id="nb_credit_tab" class="animate"><img src="./img/ui/nb_credit.png"/></li>
+                    </ul>
+                </nav>
+                
+                <div id="nb_pages">
+                    <section id="nb_intro" class="layer full-size-content">
+                        <h1>RESUME DE L’EPISODE 1</h1>
+                        
+                        <p>Simon a du s’échapper de son foyer sous la menace d’une bande qui se fait appeler la Meute. Il s’est enfui à travers les rues de Paris pour se retrouver pris au piège dans le Parc Montsouris…</p>
+                    </section>
+                    
+                    <section id="nb_roles" class="layer full-size-content active"></section>
+                    
+                    <section id="nb_dictionary" class="layer full-size-content"></section>
+                    
+                    <section id="nb_credit" class="layer full-size-content">
+                        <h5 style="text-align: center;">
+                            <label>--- Chef de projet ---</label><br/>
+                            Marie Seygnerole<br/>
+                            <br/>
+                            <label>--- Auteur ---</label><br/>
+                            Chris Debien<br/>
+                            <br/>
+                            <label>--- Illustrateurs ---</label><br/>
+                            3DDUO<br/>
+                            David Goujard<br/>
+                            Mathieu Sablier<br/>
+                            <br/>
+                            <label>--- Graphiste et interface ---</label><br/>
+                            3DDUO <a href="http://www.3dduo.com/‎" target="_blank">www.3dduo.com‎</a><br/>
+                            <br/>
+                            <label>--- Conception informatique ---</label><br/>
+                            Huabin Ling<br/>
+                            <br/>
+                            <label>--- Développeur ---</label><br/>
+                            Huabin Ling<br/>
+                        </h5>
+                    </section>
+                </div>
+                
+                <div id="nb_onepage" class="hidden">
+                    <img src="./img/ui/nb_page.png" class="image_fit"/>
+                    <div id="nb_page_close" class="close topright"></div>
+                    
+                    <article>
+                    </article>
+                </div>
+            </article>
+            
+            
+            <!-- KeyGame -->
+            <div id="keygame" class="hidden">
+                <img class="back" src="./games/ratGame_back.png"/>
+                <div id="key_timer">
+                    <div id="timer_left"></div>
+                    <div id="timer_right"></div>
+                    
+                    <ul id="keygame_score"></ul>
+                </div>
+                
+                <div class="leftkey key">
+                    <div class="arrow"></div>
+                    <div class="result"></div>
+                </div>
+                
+                <div class="topkey key">
+                    <div class="arrow"></div>
+                    <div class="result"></div>
+                </div>
+                
+                <div class="bottomkey key">
+                    <div class="arrow"></div>
+                    <div class="result"></div>
+                </div>
+            
+                <div class="rightkey key">
+                    <div class="arrow"></div>
+                    <div class="result"></div>
+                </div>
+                
+                
+                <div class="leftkey key_border"></div>
+                <div class="topkey key_border"></div>
+                <div class="bottomkey key_border"></div>
+                <div class="rightkey key_border"></div>
+            </div>
+            
+        </div>
+        
+        <ul id="bag_container" class="hidden">
+            <li id="bag_dark" class="hide">
+                <img src="./img/bag/bag_dark_back.png"/>
+                <img class="icon" src="./img/bag/bag_dark.png"/>
+            </li>
+            <li id="bag_map" class="hide">
+                <img src="./img/bag/bag_map_back.png"/>
+                <img class="icon" src="./img/bag/bag_map.png"/>
+            </li>
+            <li id="bag_note" class="hide">
+                <img src="./img/bag/bag_note_back.png"/>
+                <img class="icon" src="./img/bag/bag_note.png"/>
+            </li>
+            <li id="bag_camera" class="hide">
+                <img src="./img/bag/bag_photo_back.png"/>
+                <img id="camera_ready" class="icon hidden" src="./img/bag/bag_camera.png"/>
+                <img id="photo_ready" class="icon" src="./img/bag/bag_photo.png"/>
+            </li>
+            <li id="bag_badgt" class="hide">
+                <img src="./img/bag/bag_badgt_back.png"/>
+                <img class="icon" src="./img/bag/bag_badgt.png"/>
+            </li>
+            <li id="bag_sound" class="hide">
+                <img src="./img/bag/bag_son_back.png"/>
+                <img class="icon" src="./img/bag/bag_son_off.png"/>
+                <img class="icon" src="./img/bag/bag_son.png" id="unmute_icon"/>
+            </li>
+            <div id="bag"><img src="./img/bag/bag_light.png"/></div>
+        </ul>
+        
+        <div id="ui_animation">
+            <div id="ui_photo_animation" class="hidden">
+                <img src=""/>
+            </div>
+            
+            <div id="ui_bdg_notification" class="hidden">
+            </div>
+        </div>
+        
+    </body>
+</html>

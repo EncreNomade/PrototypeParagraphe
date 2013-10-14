@@ -1,0 +1,478 @@
+/******************** Animation ********************/
+
+
+
+
+/******************** Balise ********************/
+
+div {
+    margin: 0px;
+    padding: 0px;
+}
+li, li a {
+    font: normal 1.25em/1.6875em "BebasNeueRegular", "Helvetica LT Std", Arial;
+    letter-spacing: 0.09375em;
+    cursor: pointer;
+    color: #fff;
+    text-decoration: none;
+}
+ul {
+    list-style: none;
+}
+
+
+
+
+/******************** Classes ********************/
+
+.topcenter {
+    position: fixed;
+    left: 50%;
+    top: 50px;
+    width: 0px;
+    height: 0px;
+    overflow: visible;
+    z-index: 20;
+}
+.container_center {
+    position: relative;
+    left: 50%;
+    width: 0px;
+    height: 0px;
+    overflow: visible;
+}
+.center_text {
+    width: 100%;
+    text-align: center;
+}
+.text_selectable {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    user-select: text;
+}
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+    
+    -webkit-transition: visibility 0s 0.3s, opacity 0.3s linear;
+    -moz-transition: visibility 0s 0.3s, opacity 0.3s linear;
+    -o-transition: visibility 0s 0.3s, opacity 0.3s linear;
+    transition: visibility 0s 0.3s, opacity 0.3s linear;
+}
+.show {
+    visibility: visible;
+    opacity: 1;
+    
+    -webkit-transition: opacity 0.6s linear;
+    -moz-transition: opacity 0.6s linear;
+    -o-transition: opacity 0.6s linear;
+    transition: opacity 0.6s linear;
+}
+.absolut {
+    position:absolute;
+}
+.shadow {
+    -webkit-box-shadow: 0px 0px 40px 5px #000;
+    -moz-box-shadow: 0px 0px 40px 5px #000;
+    -ms-box-shadow: 0px 0px 40px 5px #000;
+    -o-box-shadow: 0px 0px 40px 5px #000;
+    box-shadow: 0px 0px 40px 5px #000;
+}
+
+
+
+
+/******************** Structure ********************/
+
+html {
+    overflow-y: hidden;
+}
+
+body {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    background: #000;
+}
+
+nav#controller {
+    position: absolute;
+    left: 50%;
+    bottom: 1.875em;
+    width: 15em;
+    margin-left: -6.75em;
+    height: 4em;
+}
+nav#controller ul {
+    margin:0px;
+    padding:0px;
+}
+nav#controller ul li {
+    position:relative;
+    float:left;
+    width:4em;
+    height:4em;
+    cursor:pointer;
+}
+nav#controller ul li img {
+    width: 100%;
+    height: 100%;
+}
+nav#controller ul #ctrl_curr:hover #timer {
+    opacity: 0;
+}
+#btn_playpause {
+    width:4em;
+    height:4em;
+}
+#btn_playpause.pause {
+    background: transparent url('../img/button_pause.png') no-repeat left top;
+    background-size: 4em 4em;
+}
+#btn_playpause.play {
+    background: transparent url('../img/button_play.png') no-repeat left top;
+    background-size: 4em 4em;
+}
+
+article.page {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+.layer {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+img.background {
+    position: absolute;
+    width: auto;
+    height: 100%;
+}
+
+#preloader {
+    position: absolute;
+    width: 20em;
+    height: 5em;
+    left: 50%;
+    margin-left: -10em;
+    top: 50%;
+    margin-top: -2.5em;
+    background: rgba(246, 168, 0, 0.8);
+    border-radius: 1em;
+}
+#preloader progress {
+    position: relative;
+    width: 17.5em;
+    height: 1.25em;
+    left: 1.25em;
+    top: 1.25em;
+}
+#preloader p {
+    position: relative;
+    color: #fff;
+    width: 100%;
+    text-align: center;
+    margin: 2em 0 0 0;
+    padding: 0px;
+}
+
+article.content {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    
+    font: normal 1.625em "GudeaRegular", "Helvetica LT Std", Arial;
+    color: #FFF;
+    line-height: 1.625em;
+}
+
+article.content .block {
+    position: relative;
+    max-width: 18em;
+    width: auto;
+    height: auto;
+    margin: 1em;
+}
+
+article.content.absolut {
+    height:100%;
+}
+
+article.content.absolut .block {
+    position: absolute;
+}
+
+.block p {
+    position: relative;
+    padding: 0.625em;
+    margin: 0px 0px 0.625em 0px;
+}
+.block p.text {
+    background: rgba(0, 0, 0, 0.65);
+}
+.block p.animation {
+    padding: 0px;
+    margin: 0px;
+    height: 0px;
+}
+.block p.parole {
+    background: rgba(246, 168, 0, 0.65);
+    color: #000;
+    margin: 0px 0px 0.625em 3.125em;
+}
+p.parole .portrait {
+    position: absolute;
+    max-width: 2.14em;
+    width: auto;
+    height: 2.14em;
+    padding: 0.3125em;
+    left: -3.125em;
+    top: 0px;
+    background: rgba(0, 0, 0, 0.65);
+}
+
+.block p.illu {
+    margin: 0px;
+    width: 16em;
+    height: auto;
+}
+.block p.illu img {
+    width: 100%;
+    height: auto;
+}
+
+.block .game {
+    position: relative;
+    left: 0px;
+    top: 0px;
+    width: 14.375em;
+    height: 10em;
+    background: #000;
+    color: #fff;
+    border: 0.1875em solid rgb(246, 168, 0);
+    padding: 0.625em;
+    text-align: center;
+}
+.block .game span {
+    position: relative;
+    top: 2.5em;
+}
+
+span.wiki {
+    color: rgb(230,82,82);
+}
+
+
+#avgLayer {
+    width:0px;
+    height:0px;
+    overflow:visible;
+}
+#center {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: 0px;
+    height: 0px;
+    z-index: 1;
+    visibility: hidden;
+}
+#center.show {
+    visibility: visible;
+}
+#avgLayer #root {
+    position:absolute;
+    top:0px;
+}
+
+
+
+
+
+/******************** Game / Video ********************/
+
+#gameCanvas {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    z-index: 1;
+}
+#game_container {
+    z-index: 0;
+    visibility: hidden;
+    overflow: visible;
+    background: transparent;
+    left: 50%;
+    top: 50%;
+    width: 0px;
+    height: 0px;
+    
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+#game_container .close {
+    position: absolute;
+    right: -1em;
+    top: -1em;
+    z-index: 3;
+}
+#game_container.nowindow {
+    border: 0.1875em solid #4c4c4c;
+    
+    -moz-box-shadow: 0 0 0.625em #000000;
+    -webkit-box-shadow: 0 0 0.625em #000000;
+    box-shadow: 0 0 0.625em #000000;
+}
+#game_container.nowindow h1, #game_container.nowindow .sep_line {
+    visibility: hidden;
+}
+#game_container.active {
+    display: block;
+    z-index: 15;
+    visibility: visible;
+    opacity: 1;
+}
+#game_center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 0px;
+    height: 0px;
+    z-index: 2;
+}
+#game_result {
+    position: absolute;
+    left: -90px;
+    top: -75px;
+    width: 180px;
+    height: 130px;
+    border: 2px solid #000;
+    background: #fff;
+    color: #000;
+    visibility: hidden;
+    opacity: 0;
+}
+.game_result {
+    position: absolute;
+    left: -90px;
+    top: -75px;
+    width: 180px;
+    height: 130px;
+    border: 2px solid #000;
+    background: #fff;
+    color: #000;
+}
+#game_result.active {
+    visibility: visible;
+    opacity: 1;
+}
+#game_result h2, .game_result h2 {
+    position: relative;
+    float: left;
+    font: bold 15px/50px 'DroidSansRegular', Arial, Helvetica;
+    vertical-align: bottom;
+    width: 175px;
+    text-align: center;
+    height: 50px;
+    margin: 0;
+    padding: 0 0 0 5px;
+    border-bottom: 1px solid #000;
+}
+#game_result h2 span, .game_result h2 span {
+    font: bold 25px/50px "BebasNeueRegular", "Helvetica LT Std", Arial;
+    margin: 0;
+    color: rgb(246, 168, 0);
+}
+#game_result img, .game_result img {
+    position: absolute;
+    right: 5px;
+    top: 10px;
+    width: 30px;
+    height: 30px;
+    z-index: 2;
+}
+#game_result h5, .game_result h5 {
+    position: relative;
+    float: left;
+    font: normal 15px/25px 'DroidSansRegular', Arial, Helvetica;
+    vertical-align: middle;
+    width: 175px;
+    text-align: center;
+    height: 50px;
+    margin: 0 0 15px 0;
+    padding: 0 0 0 5px;
+}
+#game_result ul, .game_result ul {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    height: 30px;
+    background: #666;
+    color: #000;
+    font: normal 20px/30px "BebasNeueRegular", "Helvetica LT Std", Arial;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+}
+#game_result ul li, .game_result ul li {
+    float: left;
+    width: 90px;
+    height: 100%;
+    border-top: 1px solid #000;
+    color: rgb(246, 168, 0);
+}
+#game_result ul li:hover, .game_result ul li:hover {
+    background: rgb(246, 168, 0);
+    color: #fff;
+}
+#game_result ul li:first-child, .game_result ul li:first-child {
+    width: 89px;
+    border-right: 1px solid #000;
+}
+
+#game_container .like-container {
+    position: absolute;
+    top: -1.875em;
+    right: 1.25em;
+    z-index: 2;
+}
+
+.video {
+    position: absolute;
+    display: none;
+    opacity: 0;
+    z-index: 0;
+    width: 80%;
+    height: 80%;
+    top: 100%;
+    padding: 0px;
+    margin: 0px auto;
+}
+.video_active {
+    top: 10%;
+    display: block;
+    opacity: 1;
+    z-index: 14;
+}
