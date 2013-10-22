@@ -25,14 +25,17 @@ var Badge = (function() {
             var flagids = this.get("flagids");
             this.flags = {};
             for (var i = 0; i < flagids.length; i++) {
-                this.listenTo(flagDB.get(flagids[i]), "change:pulled", this.flagPulled);
-                this.flags[flagids[i]] = false;
+                var flag = flagDB.get(flagids[i]);
+            
+                this.listenTo(flag, "change:pulled", this.flagPulled);
+                this.flags[flagids[i]] = flag.get("pulled");
             }
+            
+            // Initiale check for lock
+            this.checkUnlock();
         },
         
-        flagPulled: function(flag) {
-            this.flags[flag.id] = flag.get("pulled");
-            
+        checkUnlock: function() {
             var canUnlock = true;
             for (var i in this.flags) {
                 if (!this.flags[i]) {
@@ -44,6 +47,14 @@ var Badge = (function() {
             if (canUnlock) {
                 this.unlock();
             }
+            
+            return this;
+        },
+        
+        flagPulled: function(flag) {
+            this.flags[flag.id] = flag.get("pulled");
+            
+            this.checkUnlock();
             
             return this;
         },
@@ -259,6 +270,8 @@ var Badge = (function() {
     
         pullUpFlag: function(name) {
             this.flagDB.findWhere({"name": name}).set("pulled", true);
+            // Update flag DB in localStorage
+            localStorage ? localStorage.flagDB = JSON.stringify(this.flagDB.toJSON()) : false;
         },
         
         isPanelOpen: function() {
@@ -281,8 +294,8 @@ var Badge = (function() {
 
 
 // Data
-
-flagDB = [
+var flagDB;
+localStorage && localStorage.flagDB && (flagDB = JSON.parse(localStorage.flagDB)) ? true : flagDB = [
     {
         "id": 1,
         "name": "DeadBlock",
@@ -310,22 +323,22 @@ flagDB = [
     },
     {
         "id": 6,
-        "name": "CollectBack1",
+        "name": "ph_rue",
         "pulled": false
     },
     {
         "id": 7,
-        "name": "CollectBack2",
+        "name": "ph_pavillon",
         "pulled": false
     },
     {
         "id": 8,
-        "name": "CollectIllu1",
+        "name": "ph_simonRun",
         "pulled": false
     },
     {
         "id": 9,
-        "name": "CollectIllu2",
+        "name": "ph_simonCache",
         "pulled": false
     },
     {
@@ -341,7 +354,7 @@ flagDB = [
 ];
 
 badgeLists = {
-    "Communs" : [
+    "Toute l'histoire" : [
         {
             "name": "OneEpisode",
             "imgUrl": "./img/ui/bdg_1Epi.png",
@@ -360,7 +373,7 @@ badgeLists = {
             "name": "TheFirsts",
             "imgUrl": "./img/ui/bdg_1photo1wiki.png",
             "flagids": [3, 10],
-            "info": "Avoir obtenu ta première photo",
+            "info": "Avoir obtenu ta première photo et ta première définition",
             "lock": true
         },
         {
@@ -374,51 +387,51 @@ badgeLists = {
             "name": "100%",
             "imgUrl": "./img/ui/bdg_100.png",
             "flagids": [1],
-            "info": "Avoir exploré cent pour cent du jeu",
+            "info": "Avoir gagné tous les jeux",
             "lock": true
         }
     ],
-    "Episode 1" : [
+    "L'épisode 1" : [
         {
             "name": "Ep1_OneChoice",
             "imgUrl": "./img/ui/bdg_1choice.png",
             "flagids": [4],
-            "info": "Avoir fait un choix",
+            "info": "Lorsque tu as fait un choix dans l'histoire",
             "lock": true
         },
         {
             "name": "Ep1_AllChoice",
             "imgUrl": "./img/ui/bdg_allChoice.png",
             "flagids": [1],
-            "info": "Avoir fait tous les choix dans l'episode 1",
+            "info": "Lorsque tu as fait tous les choix possibles dans l'histoire",
             "lock": true
         },
         {
             "name": "Ep1_Game",
             "imgUrl": "./img/ui/bdg_game.png",
             "flagids": [5],
-            "info": "Avoir fini le mini jeu",
+            "info": "Lorsque tu as fini le jeu 'Parc Montsouris'",
             "lock": true
         },
         {
             "name": "Ep1_Definitions",
             "imgUrl": "./img/ui/bdg_allWiki.png",
             "flagids": [11],
-            "info": "Avoir collecte toutes les définitions dans l'episode 1",
+            "info": "Lorsque tu as collecté toutes les définitions de mots",
             "lock": true
         },
         {
             "name": "Ep1_Photos",
             "imgUrl": "./img/ui/bdg_allPhoto.png",
             "flagids": [6, 7, 8, 9],
-            "info": "Avoir collecte toutes les photos dans l'episode 1",
+            "info": "Lorsque tu as collecté toutes les photos",
             "lock": true
         },
         {
             "name": "Ep1_Finish",
             "imgUrl": "./img/ui/bdg_finiEpi.png",
             "flagids": [2],
-            "info": "Avoir fini l'episode 1",
+            "info": "Lorsque tu as terminé l'episode 1",
             "lock": true
         }
     ]
@@ -431,6 +444,6 @@ $(document).ready(function() {
 
     Badge.initFlagDB(flagDB);
     Badge.initBadges(badgeLists, $("#ui_badge"), $("#ui_bdg_notification"));
-    Badge.panel.activePage("Episode 1");
+    Badge.panel.activePage("L'épisode 1");
 
 });

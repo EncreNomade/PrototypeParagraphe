@@ -1,5 +1,13 @@
 $(document).ready(function () {
 
+var photoDB;
+localStorage && localStorage.photoDB && (photoDB = JSON.parse(localStorage.photoDB)) ? true : photoDB = [
+    {"id": "ph_rue", "url": "./img/Rue.jpg"},
+    {"id": "ph_simonRun", "url": "./img/simonRun.jpg"},
+    {"id": "ph_pavillon", "url": "./img/Pavillon.jpg"},
+    {"id": "ph_simonCache", "url": "./img/SimonCache.jpg"}
+];
+
 // Bag interactions
 window.bag = (function() {
 
@@ -51,11 +59,16 @@ window.bag = (function() {
         tagName: "article",
         
         events: {
-            "click .close": "close"
+            "click .close": "close",
+            "click .intro_link": "gotoIntro"
         },
     
         initialize: function() {
             this.listenTo(this.model, "change:curr_mark", this.render);
+        },
+        
+        gotoIntro: function() {
+            Notebook.showPanel("Intro");
         },
     
         render: function() {
@@ -116,12 +129,7 @@ window.bag = (function() {
         "model": PhotoModel
     });
     
-    var photos = new EpiPhotos([
-        new PhotoModel({"id": "ph_rue", "url": "./img/Rue.jpg"}),
-        new PhotoModel({"id": "ph_simonRun", "url": "./img/simonRun.jpg"}),
-        new PhotoModel({"id": "ph_pavillon", "url": "./img/Pavillon.jpg"}),
-        new PhotoModel({"id": "ph_simonCache", "url": "./img/SimonCache.jpg"}),
-    ]);
+    var photos = new EpiPhotos(photoDB);
     
     var photoShower = new (Backbone.View.extend({
         "tagName": "section",
@@ -479,23 +487,17 @@ window.bag = (function() {
             else {
                 if (photoWaiting) {
                     photoWaiting.unlock();
-                    animateCaptureImage(photoWaitingObj);
                     
-                    switch (photoWaiting.get("id")) {
-                        case "ph_simonRun":
-                            Badge.pullUpFlag("CollectIllu1");
-                        break;
-                        case "ph_simonCache":
-                            Badge.pullUpFlag("CollectIllu2");
-                        break;
-                        case "ph_rue":
-                            Badge.pullUpFlag("CollectBack1");
-                        break;
-                        case "ph_pavillon":
-                            Badge.pullUpFlag("CollectBack2");
-                        break;
-                    }
+                    var pid = photoWaiting.get("id");
+                    Badge.pullUpFlag(pid);
                     Badge.pullUpFlag("CollectOnePhoto");
+                    
+                    this.trigger("PhotoCaptured", pid);
+                    
+                    // Update photo DB in localStorage
+                    localStorage ? localStorage.photoDB = JSON.stringify(photos.toJSON()) : false;
+                    
+                    animateCaptureImage(photoWaitingObj);
                 }
                 photo_ready();
             }
@@ -532,12 +534,22 @@ window.bag = (function() {
             bag_container.removeClass('hidden');
         },
         
-        photoReady: function(imgId, elem) {
+        getView: function() {
+            return bagView;
+        },
+        
+        isPhotoLock: function(imgId) {
+            var photo = photos.findWhere({"id": imgId});
+            return photo.isLock();
+        },
+        
+        photoReady: function(imgId, elem, timeout) {
             photoWaiting = photos.findWhere({"id": imgId});
             if (photoWaiting.isLock()) {
                 photoWaitingObj = elem;
                 camera_ready();
-                setTimeout("window.bag.photoTimeout()", 6000);
+                if(timeout !== false)
+                     setTimeout("window.bag.photoTimeout()", isNaN(timeout) ? 6000 : timeout);
             }
         },
         

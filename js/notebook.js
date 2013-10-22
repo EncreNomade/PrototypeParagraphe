@@ -360,6 +360,13 @@ var Notebook = (function() {
                 Badge.pullUpFlag("CollectOneWiki");
                 this.dictionaryPanel.unlockWord(word).showDefinition(word);
                 this.showPanel("Dictionary");
+                
+                // Update localstorage
+                if(localStorage) {
+                    wordCollectionDB = localStorage.wordCollectionDB ? JSON.parse(localStorage.wordCollectionDB) : {};
+                    wordCollectionDB[word] = false;
+                    localStorage.wordCollectionDB = JSON.stringify(wordCollectionDB);
+                }
             }
         },
         
@@ -418,6 +425,9 @@ var roles = [
 ];
 
 
+var wordCollectionDB;
+localStorage && localStorage.wordCollectionDB && (wordCollectionDB = JSON.parse(localStorage.wordCollectionDB)) ? true : wordCollectionDB = {};
+
 var words = [
     {
         word: "Cyclope",
@@ -430,8 +440,10 @@ var words = [
         },
         synonymes: [],
         links: {
+            "Wikipédia Cyclope": "http://fr.wikipedia.org/wiki/Cyclope",
             "Wikipédia X-Men": "http://fr.wikipedia.org/wiki/Cyclope_%28comics%29"
-        }
+        },
+        lock: wordCollectionDB.Cyclope === false ? false : true
     },
     {
         word: "Hallali",
@@ -442,7 +454,7 @@ var words = [
             "Interjection": "Cri du chasseur qui attrape du gibier lors d’une chasse à courre.",
             "L'hallali du cerf": "<img src='./img/src22.jpeg'/><p class='caption'>Peint par Courbet en 1867</p>"
         },
-        links: {"Wikipédia Cyclope": "http://fr.wikipedia.org/wiki/Cyclope"}
+        lock: wordCollectionDB["Hallali"] === false ? false : true
     },
     {
         word: "La Petite Ceinture",
@@ -456,7 +468,8 @@ var words = [
         links: {
             "Lien Wikipédia": "http://fr.wikipedia.org/wiki/Ligne_de_Petite_Ceinture",
             "Lien Mairie de Paris": "http://www.paris.fr/loisirs/se-promener-a-paris/balades-au-vert/decouvrir-les-richesses-de-la-petite-ceinture/rub_9660_stand_53584_port_23803"
-        }
+        },
+        lock: wordCollectionDB["La Petite Ceinture"] === false ? false : true
     },
     {
         word: "Albinos",
@@ -471,7 +484,8 @@ var words = [
         links: {
             "Wikipédia albinos": "http://fr.wikipedia.org/wiki/Albinisme",
             "Site officiel de Salif Keïta": "http://salif-keita.artiste.universalmusic.fr/"
-        }
+        },
+        lock: wordCollectionDB["Albinos"] === false ? false : true
     },
     {
         word: "Frondaison",
@@ -481,7 +495,8 @@ var words = [
         extraInfos: {
             "Photo de la frondaison": "<img src='./img/src29.jpeg'/><p class='caption'>Photo réalisée par Panoramas</p>"
         },
-        synonymes: ["Feuillage", "Ramure", "Branchage"]
+        synonymes: ["Feuillage", "Ramure", "Branchage"],
+        lock: wordCollectionDB["Frondaison"] === false ? false : true
     },
     {
         word: "Noctambule",
@@ -492,7 +507,8 @@ var words = [
             "A moins d’inventer": " - Nyctambule : qui recherche les fétards égarés la nuit<br/> - Noctalope : qui travaille la nuit sans avoir besoin de lumière",
             "Nyctalope": "A ne pas confondre avec nyctalope : un adjectif qui désigne celui qui a la faculté de voir dans la pénombre, comme les chats"
         },
-        synonymes: ["Feuillage", "Ramure", "Branchage"]
+        synonymes: ["Feuillage", "Ramure", "Branchage"],
+        lock: wordCollectionDB["Noctambule"] === false ? false : true
     }
 ];
 

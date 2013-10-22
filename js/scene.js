@@ -656,7 +656,7 @@ $(document).ready(function () {
                 // Show bag
                 window.bag.show();
                 // Background 1 available
-                window.bag.photoReady("ph_rue", $('#contentBack'));
+                //window.bag.photoReady("ph_rue", $('#contentBack'));
                 // Start counter
                 window.controller.start(this.get("duration"));
             }
@@ -1085,6 +1085,25 @@ $(document).ready(function () {
     }
     scene.getAction('quarante').once('started', zoominout, $('#quarante'));
     scene.getAction('trente').once('started', zoominout, $('#trente'));
+    
+    // Tuto and capture for background 1
+    scene.getAction('phototuto').once('started', function() {
+        if( bag.isPhotoLock("ph_rue") ) {
+            window.controller.lock();
+            window.bag.photoReady("ph_rue", $('#contentBack'), false);
+        
+            var tutodone = function(pid) {
+                var action = scene.getAction('phototuto');
+                if (pid == "ph_rue" && action.get("state") == "START") {
+                    window.controller.unlock();
+                    action.end();
+                    bag.getView().off("PhotoCaptured", tutodone);
+                }
+            }
+        
+            bag.getView().on("PhotoCaptured", tutodone);
+        }
+    });
     
     // Capture for background 2
     scene.getAction('background2').on('started', function() {

@@ -257,11 +257,12 @@ to {
     position: absolute;
     top: 6px;
     left: 16px;
-    margin: 0px;
+    margin: 10px 0;
     width: 100px;
     text-align: center;
     color: #fff;
     font: bold 10px/13px "DejaVu Sans", "Helvetica Neue", Helvetica, Arial;
+    cursor: pointer;
 }
 
 
@@ -400,7 +401,7 @@ to {
 #ui_badge {
     position: absolute;
     width: 686px;
-    height: 600px;
+    height: 550px;
     left: -343px;
     top: -300px;
     font-family: "DejaVu Sans", "Helvetica Neue", Helvetica, Arial;
@@ -441,7 +442,7 @@ to {
 
 #ui_badge #bdg_menu {
     position: relative;
-    margin: 70px 35px 45px;
+    margin: 60px 35px 20px;
     width: 616px;
     height: 35px;
     font-size: 24px;
@@ -450,8 +451,9 @@ to {
 #bdg_menu ul li {
     position: relative;
     float: left;
-    width: 120px;
+    width: 200px;
     height: 32px;
+    line-height: 32px;
     border: 2px solid #000;
     border-radius: 5px;
     background: rgba(30, 30, 30, .8);
@@ -502,7 +504,7 @@ to {
     background: rgba(212, 144, 10, .8);
     color: #fff;
     padding: 5px 5px 5px 75px;
-    font-size: 16px;
+    font-size: 15px;
     line-height: 23px;
 }
 #bdg_list li img {

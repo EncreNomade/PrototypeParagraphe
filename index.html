@@ -109,6 +109,20 @@
                     </section>
                     
                     <section class="block hidden">
+                        <p class="hidden parole dark"><img src="./img/dark.png" class="portrait"/>Tu peux lire plus rapidement, revenir en arrière ou faire une pause
+                        </p>
+                        <p class="hidden parole dark"><img src="./img/dark.png" class="portrait"/>
+                            <img src="./img/progbar/next.png" style="width: 40px; margin-right: 10px; height: auto;"/>Accelerer<br/>
+                            <img src="./img/progbar/previous.png" style="width: 40px; margin-right: 10px; height: auto;"/>Retour en arrière<br/>
+                            <img src="./img/capture_timer.png" style="width: 40px; margin-right: 10px; height: auto;"/>Mettre le souris dessus ou cliquer pour faire une pause
+                        </p>
+                        <p class="hidden parole dark" id="phototuto"><img src="./img/dark.png" class="portrait"/>Le sac clignote !<br/>
+                            Vite clique dessus et capture l'image avec l'appareil photo<br/>
+                            <img src="./img/sac_camera.png" style="width: auto; height: 50px;"/>
+                        </p>
+                    </section>
+                    
+                    <section class="block hidden">
                         <p class="hidden text" data-sound="villenuit">Simon frissonna en songeant à ce qui allait lui arriver. Il savait que Kevin, leur chef, serait sans pitié…</p>
                         <p class="hidden text">Il fallait qu’il leur échappe.<br/>
                         Absolument. Et tant pis s’il ne pouvait jamais retourner au foyer.</p>
@@ -200,18 +214,15 @@
                             <img src="./img/dark.png" class="portrait"/>￼Appuie sur la flèche <img src="./games/key_up.jpg" style="position: relative; top: 10px; width: auto; height: 50px;"/> ou <img src="./games/key_down.jpg" style="position: relative; top: 10px; width: auto; height: 50px;"/> de ton clavier lorsque le contour jaune touche le pavé dans le jeu.<br/>
                             <img src="./games/keywithborder.jpg" style="height: 50px;"/><img src="./games/keygoodtiming.jpg" style="height: 50px; margin-left: 50px;"/><br/>
                         </p>
-                    </section>
-                    
-                    <section class="block hidden">
                         <p class="hidden parole dark">
-                            <img src="./img/dark.png" class="portrait"/>￼Réussi<img src="./games/keysuccess.jpg" style="position: relative; top: 10px; width: auto; height: 50px; margin: 0px 20px 0px 10px;"/><br/>
-                            Raté<img src="./games/keyfail.jpg" style="position: relative; top: 10px; width: auto; height: 50px; margin: 0px 10px;"/>
+                            <img src="./img/dark.png" class="portrait"/><img src="./games/keysuccess.jpg" style="position: relative; top: 10px; width: auto; height: 50px; margin: 0px 20px 0px 10px;"/>￼Réussi<br/>
+                            <img src="./games/keyfail.jpg" style="position: relative; top: 10px; width: auto; height: 50px; margin: 0px 20px 0px 10px;"/>Raté
                         </p>
                     </section>
                     
                     <section class="block hidden">
                         <p class="hidden parole dark"><img src="./img/dark.png" class="portrait"/>￼￼Si tu réussis, Simon discutera avec le SDF. Si tu rates cinq fois, Simon continuera à courir.</p>
-                        <div class="hidden game keygame shadow" data-winexit="1" data-loseexit="2" data-gamename="calmdown">
+                        <div class="hidden game keygame" data-winexit="1" data-loseexit="2" data-gamename="calmdown">
                             <img src="./img/dark.png" class="portrait"/>
                             Tu es prêt? Vas y !<br/>
                             <img class="btn_play" src="./img/btn_play.png"/>
@@ -644,10 +655,7 @@
                     <img id="map_player" src="./img/ui/map_player.png"/>
                     <div id="map_bulle">
                         <img src="./img/ui/map_bulle.png"/>
-                        <h5>
-                            - Résumé de l'épisode -<br/>
-                            - PDF -
-                        </h5>
+                        <h5 class="intro_link">Résumé de l'épisode</h5>
                     </div>
                 </div>
             </article>
