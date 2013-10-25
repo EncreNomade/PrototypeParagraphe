@@ -503,18 +503,14 @@ $(document).ready(function () {
     var docw = $(window).width(), doch = $(window).height();
     $('body').css({'width': docw, 'height': doch});
     // Place all background centered
-    $('img.background').addClass('hidden').each(function() {
+    $('img.background').each(function() {
+        $(this).addClass("hidden");
         $(this).load(function(){
             $(this).css('margin-left', -$(this).width() / 2)
                    .css('margin-top', -$(this).height() / 2)
                    .removeClass('hidden');
         });
     });
-    $('img.background-ext').each(function() {
-        $(this).load(function(){
-            $(this).css('margin-top', -$(this).height() / 2);
-        });
-    })
     
     // Set all portrait illustration
     $('.illu img').each(function() {

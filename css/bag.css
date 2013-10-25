@@ -366,7 +366,7 @@ to {
     opacity: 0;
     cursor: pointer;
 }
-#ui_photos #photo_shower:hover .next, #ui_photos #photo_shower:hover .prev {
+#ui_photos #photo_shower:hover .next, #ui_photos #photo_shower:hover .prev, #ui_photos #photo_shower.hover .next, #ui_photos #photo_shower.hover .prev {
     opacity: 0.8;
 }
 #ui_photos #photo_shower img {

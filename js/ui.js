@@ -186,6 +186,7 @@ window.bag = (function() {
                             'height': dh
                         }
                     }).queue("fx", function(next) {
+                        $(this).addClass("hover");
                         // Append close button
                         view.appendBtns();
                         next();
@@ -234,6 +235,7 @@ window.bag = (function() {
                     'height': dh
                 }
             }).queue("fx", function(next) {
+                $(this).addClass("hover");
                 // Append close button
                 view.appendBtns();
                 next();
