@@ -779,29 +779,7 @@ __KEY_SPACE = 32;
 		//this.version = BrowserDetect.version;
 		
 		this.update = function() {
-			if(this.iPhone) {
-			    switch(top.orientation)
-                {
-                    case 0:
-                        this.orientation = "portrait";
-                    break;
- 
-                    case -90:
-                        this.orientation = "landscape";
-                    break;
- 
-                    case 90:
-                        this.orientation = "landscape";
-                    break;
- 
-                    case 180:
-                        this.orientation = "portrait";
-                    break;
-                }
-				this.pageWidth = top.innerWidth > 320 ? 480 : 320;
-				this.pageHeight = top.innerWidth > 320 ? 268 : 416;
-			}
-			else if(this.android) {
+			if(this.android) {
 			    switch(top.orientation)
                 {
                    case 0:
