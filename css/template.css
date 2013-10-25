@@ -211,7 +211,7 @@ body {
     border: 3px solid #000;
     cursor:pointer;
 }
-#ctrl_progressbar #progress_pt:hover #timer {
+#ctrl_progressbar #progress_pt #timer.hover {
     opacity: 0;
 }
 #btn_playpause {

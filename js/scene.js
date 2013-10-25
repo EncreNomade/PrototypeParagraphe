@@ -4,6 +4,7 @@ soundManager.setup({
     flashVersion: 9, // optional: shiny features (default = 8)
     flashLoadTimeout: 500,
     useHighPerformance: true,
+    debugMode: false,
     // optional: ignore Flash where possible, use 100% HTML5 mode
     preferFlash: false,
     useHTML5Audio: true,
@@ -680,13 +681,17 @@ $(document).ready(function () {
             progress_pt.css('left', curr_prog);
         }
         
-        timer.hover(function() {
-            if(!timer.hasClass('hidden'))
-                controller.pause = true;
-        }, function() {
-            if(!timer.hasClass('hidden'))
-                controller.pause = false;
-        });
+        if(!MseConfig.mobile) {
+            timer.hover(function() {
+                timer.addClass("hover");
+                if(!timer.hasClass('hidden'))
+                    controller.pause = true;
+            }, function() {
+                timer.removeClass("hover");
+                if(!timer.hasClass('hidden'))
+                    controller.pause = false;
+            });
+        }
         
         ctrl_prev.click(function() {
             scene.gotoPrev();
